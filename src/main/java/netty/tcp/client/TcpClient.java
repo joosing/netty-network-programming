@@ -24,9 +24,6 @@ public class TcpClient implements ChannelExceptionListener {
     private final int connectTimeoutMillis = 3000;
 
     public void init(ChannelInitializer<?> channelInitializer) {
-        // TODO : 추후 이벤트 루프 쓰레드의 성능을 고려하여 쓰레드 개수를 조절해야 합니다.
-        Assert.isNull(bootstrap.config().group(), "you have to call this function in postConstruct()");
-
         EventLoopGroup eventLoopGroup = new NioEventLoopGroup();
 
         bootstrap.group(eventLoopGroup)
@@ -216,7 +213,7 @@ public class TcpClient implements ChannelExceptionListener {
          *
          * @param tryingIp IP
          * @param tryingPort 포트
-         * @return
+         * @return 연결 결과
          */
         public boolean sync(String tryingIp, int tryingPort) {
             future = begin(tryingIp, tryingPort);
