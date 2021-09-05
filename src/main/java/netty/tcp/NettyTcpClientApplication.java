@@ -1,4 +1,4 @@
-package com.example.nettytcpclient;
+package netty.tcp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
