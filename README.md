@@ -1,14 +1,21 @@
+![image](https://user-images.githubusercontent.com/34666301/132111872-521e5056-8361-46ee-8983-eb142b034de6.png)
 
-우주지상국 서브시스템들과 1:1 통신을 위한 Netty 기반 TCP 클라이언트 공통 모듈을 개발하였습니다. <br/>
-  
-# 주요 API 
+## 개요 
+우주지상국 서브시스템들과 1:1 통신을 위한 Netty 기반 TCP 클라이언트 공통([TcpClient.java](https://github.com/Jsing/netty-tcp-client/blob/main/src/main/java/netty/tcp/client/TcpClient.java)) 모듈을 개발하였습니다. 
+
+<br/>
+
+## 주요 API 
 - 연결, 연결 해제
 - 장비와 연결 성공할 때 까지 비동기 연결 반복 시도
 - 장비와 연결 끊어질 경우 자동 연결 복구 로직
 - 통신 관련 사용자 태스크 관리
-- 연결 상태 알람
+- 연결 상태 알람 
 
-# Netty 프레임워크를 선택한 이유
+<br/>
+
+
+## Netty 프레임워크를 선택한 이유
 기존에 개발된 TCP 클라이언트 공통 모듈(POJO 소켓 기반)의 복잡성과 낮은 가독성 때문에 새로운 모듈 개발에 대한 지속적인 요구가 팀내에서 있었습니다. Netty 프레임워크는 다음과 같이 훌륭한 가치를 제공한다고 판단했습니다. 
 
 
