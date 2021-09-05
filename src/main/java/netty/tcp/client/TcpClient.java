@@ -104,12 +104,6 @@ public class TcpClient implements ChannelExceptionListener {
         }
     }
 
-    /**
-     * 원격지로 메시지를 전송합니다. 전송에 대한 이벤트 로그를 남기지 않고 예외가 발생한 경우에만 이벤트 로그를 남깁니다.
-     *
-     * @param message 전송 메시지
-     * @return 전송 결과
-     */
     public boolean send(Object message) {
         Assert.notNull(triedIp, "connectUntilSuccess() must be called before.");
         if (channel == null) {
