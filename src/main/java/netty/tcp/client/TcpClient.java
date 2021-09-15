@@ -4,6 +4,7 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import netty.util.EventLoopTasks;
 import org.springframework.util.Assert;
 
 import java.net.InetSocketAddress;
@@ -15,7 +16,7 @@ import java.util.concurrent.*;
 public class TcpClient implements ChannelExceptionListener {
     private final Bootstrap bootstrap = new Bootstrap();
     private final TcpClient.ConnectUntilSuccess connectUntilSuccess = new ConnectUntilSuccess();
-    private final EventLoopTasks eventLoopTasks = new EventLoopTasks();
+    private EventLoopTasks eventLoopTasks;
     private Channel channel;
     private String triedIp;
     private int triedPort;
@@ -85,6 +86,7 @@ public class TcpClient implements ChannelExceptionListener {
         shouldAlarmConnectFail = true;
         shouldRecoverConnect = true;
         channel = channelFuture.channel();
+        eventLoopTasks = new EventLoopTasks(channel);
         channel.pipeline().addLast(new ChannelExceptionMonitor(this));
         System.out.println("Connected");
         return true;
@@ -158,30 +160,6 @@ public class TcpClient implements ChannelExceptionListener {
     private String toErrorMessage(String description, String ip, int port, Throwable e) {
 
         return String.format("%s (%s, %d, %s)", description, ip, port, e.getMessage());
-    }
-
-    /**
-     * Channel 의 EventLoop 쓰레드를 통해 실행할 사용자 태스크를 처리합니다.
-     */
-    private class EventLoopTasks {
-        private final CopyOnWriteArrayList<ScheduledFuture<?>> userTaskFutures = new CopyOnWriteArrayList<>();
-
-        public boolean schedule(Runnable task, long initialDelay, long period, TimeUnit unit) {
-            if (channel == null) {
-                System.out.println(toErrorMessage("trying to schedule fails", triedIp, triedPort, new NullPointerException()));
-                return false;
-            }
-            ScheduledFuture<?> future = channel.eventLoop().scheduleAtFixedRate(task, initialDelay, period, unit);
-            userTaskFutures.add(future);
-            return true;
-        }
-
-        public void stopAll() {
-            if (!userTaskFutures.isEmpty()) {
-                userTaskFutures.forEach(future -> future.cancel(true));
-                userTaskFutures.clear();
-            }
-        }
     }
 
     /**
