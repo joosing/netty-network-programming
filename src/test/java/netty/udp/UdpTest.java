@@ -1,4 +1,4 @@
-package netty.tcp.udp;
+package netty.udp;
 
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelInitializer;
