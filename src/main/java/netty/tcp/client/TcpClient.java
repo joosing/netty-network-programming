@@ -4,7 +4,7 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import netty.util.EventLoopTasks;
+import netty.util.ChannelEventLoopTask;
 import org.springframework.util.Assert;
 
 import java.net.InetSocketAddress;
@@ -16,7 +16,7 @@ import java.util.concurrent.*;
 public class TcpClient implements ChannelExceptionListener {
     private final Bootstrap bootstrap = new Bootstrap();
     private final TcpClient.ConnectUntilSuccess connectUntilSuccess = new ConnectUntilSuccess();
-    private EventLoopTasks eventLoopTasks;
+    private ChannelEventLoopTask eventLoopTasks;
     private Channel channel;
     private String triedIp;
     private int triedPort;
@@ -39,7 +39,6 @@ public class TcpClient implements ChannelExceptionListener {
             if (channel != null && channel.eventLoop() != null) {
                 channel.eventLoop().shutdownGracefully().sync();
             }
-            connectUntilSuccess.stop();
             eventLoopTasks.stopAll();
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +85,7 @@ public class TcpClient implements ChannelExceptionListener {
         shouldAlarmConnectFail = true;
         shouldRecoverConnect = true;
         channel = channelFuture.channel();
-        eventLoopTasks = new EventLoopTasks(channel);
+        eventLoopTasks = new ChannelEventLoopTask(channel);
         channel.pipeline().addLast(new ChannelExceptionMonitor(this));
         System.out.println("Connected");
         return true;

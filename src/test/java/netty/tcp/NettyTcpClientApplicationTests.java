@@ -8,6 +8,7 @@ class NettyTcpClientApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }

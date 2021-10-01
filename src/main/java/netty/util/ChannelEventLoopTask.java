@@ -9,11 +9,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * Channel 의 EventLoop 쓰레드를 통해 실행할 사용자 태스크를 처리합니다.
  */
-public class EventLoopTasks {
+public class ChannelEventLoopTask {
     private final Channel channel;
     private final CopyOnWriteArrayList<ScheduledFuture<?>> userTaskFutures = new CopyOnWriteArrayList<>();
 
-    public EventLoopTasks( Channel channel ) {
+    public ChannelEventLoopTask(Channel channel ) {
         this.channel = channel;
     }
 
