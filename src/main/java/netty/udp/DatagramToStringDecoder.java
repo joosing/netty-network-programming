@@ -6,6 +6,7 @@ import io.netty.channel.socket.DatagramPacket;
 import io.netty.handler.codec.MessageToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Slf4j
@@ -13,7 +14,7 @@ public class DatagramToStringDecoder extends MessageToMessageDecoder<DatagramPac
     @Override
     protected void decode(ChannelHandlerContext ctx, DatagramPacket msg, List<Object> out) throws Exception {
         ByteBuf content = msg.content();
-        log.debug("Read : " + content.toString());
-        out.add(content.toString());
+        log.info("Read : " + content.toString(StandardCharsets.UTF_8));
+        out.add(content.toString(StandardCharsets.UTF_8));
     }
 }

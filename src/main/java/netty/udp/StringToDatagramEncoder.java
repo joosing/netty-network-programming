@@ -38,7 +38,7 @@ public class StringToDatagramEncoder extends MessageToMessageEncoder<String> imp
         ByteBuf byteBuf = Unpooled.copiedBuffer(msg, StandardCharsets.UTF_8);
         out.add(new DatagramPacket(byteBuf, optRemoteAddress.get()));
 
-        log.debug("Write : " + byteBuf.toString());
+        log.info("Write : " + byteBuf.toString(StandardCharsets.UTF_8));
     }
 
     @Override

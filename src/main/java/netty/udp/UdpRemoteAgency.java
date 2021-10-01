@@ -3,11 +3,13 @@ package netty.udp;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.socket.DatagramPacket;
+import lombok.extern.slf4j.Slf4j;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.InetSocketAddress;
 
+@Slf4j
 public class UdpRemoteAgency extends ChannelInboundHandlerAdapter {
     private InetSocketAddress remoteAddress;
     private final PropertyChangeSupport support;
@@ -22,6 +24,7 @@ public class UdpRemoteAgency extends ChannelInboundHandlerAdapter {
         InetSocketAddress newRemoteAddress = datagram.sender();
         support.firePropertyChange("Remote", remoteAddress, newRemoteAddress);
         remoteAddress = newRemoteAddress;
+        log.info(newRemoteAddress.toString());
         super.channelRead(ctx, msg);
     }
 
