@@ -1,13 +1,13 @@
-package netty.tcp;
+package netty;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class NettyTcpClientApplication {
+public class NettyNetworkProgramming {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NettyTcpClientApplication.class, args);
+		SpringApplication.run(NettyNetworkProgramming.class, args);
 	}
 
 }

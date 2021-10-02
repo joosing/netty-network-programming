@@ -9,6 +9,7 @@ import lombok.SneakyThrows;
 import netty.udp.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.net.InetSocketAddress;
@@ -24,6 +25,36 @@ class UdpTest {
     @BeforeEach
     void beforeEach() {
 
+    }
+
+    @Test
+    @SneakyThrows
+    void Test1() {
+
+    }
+
+    @Test
+    @SneakyThrows
+    void Test2() {
+
+    }
+
+    @Test
+    @SneakyThrows
+    void Test3() {
+
+    }
+
+    @Test
+    @SneakyThrows
+    void Test4() {
+
+    }
+
+    @Test
+    @SneakyThrows
+    void Test5() {
+        System.out.println("Test");
     }
 
     @Test
