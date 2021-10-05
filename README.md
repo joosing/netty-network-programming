@@ -1,3 +1,6 @@
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJsing%2Fnetty-network-programming&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 ![image](https://user-images.githubusercontent.com/34666301/132111872-521e5056-8361-46ee-8983-eb142b034de6.png)
 
 ## 개요 
@@ -73,4 +76,3 @@ Netty 에서는 다양한 형태의 `Frame Decoder`를 제공하기 때문에 �
 ### 5. 안전한 종료 서비스 
 대게 수신 쓰레드를 안전하게 종료하기 위하여 이벤트 객체 (또는 플래그)와 수신 루프상에 체크 로직을 필요로 합니다. `EventLoop.shutdownGracefully()` 서비스를 사용해 사용자 코드에서 위와 같은 로직을 제거하고, 통신 코드 자체에 집중할 수 있습니다.   
 
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJsing%2Fnetty-network-programming&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
